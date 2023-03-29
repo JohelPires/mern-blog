@@ -2,23 +2,17 @@ import { Route, Routes } from 'react-router-dom'
 import './App.css'
 // import Header from './components/Header'
 import Layout from './components/Layout'
-import PostCard from './components/PostCard'
+import IndexPage from './pages/IndexPage'
+import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
 
 function App() {
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
-        <Route
-          index
-          element={
-            <div>
-              <PostCard />
-              <PostCard />
-              <PostCard />
-            </div>
-          }
-        />
-        <Route path='/login' element={<div>login</div>} />
+        <Route index element={<IndexPage />} />
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/register' element={<RegisterPage />} />
       </Route>
     </Routes>
   )
