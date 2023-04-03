@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function PostCard() {
   return (
@@ -15,9 +16,9 @@ function PostCard() {
           Framework refines its laptops and adds a cute way to reuse old parts
         </h2>
         <p className='info'>
-          <a href='' className='author'>
+          <Link to='#' className='author'>
             Johel Pires
-          </a>
+          </Link>
           <time>2023-03-27 11:00</time>
         </p>
         <p className='summary'>
