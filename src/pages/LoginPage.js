@@ -1,16 +1,18 @@
 import { useState } from 'react'
+import { loginUser } from '../api/api'
 
 function LoginPage() {
-  const [login, setLogin] = useState({ username: '', password: '' })
+  const [loginBody, setLoginBody] = useState({})
+  const [redirect, setRedirect] = useState(false)
   function handleChange(e) {
     switch (e.target.id) {
-      case 'username':
-        setLogin((prev) => {
-          return { ...prev, username: e.target.value }
+      case 'email':
+        setLoginBody((prev) => {
+          return { ...prev, email: e.target.value }
         })
         break
       case 'password':
-        setLogin((prev) => {
+        setLoginBody((prev) => {
           return { ...prev, password: e.target.value }
         })
         break
@@ -19,25 +21,29 @@ function LoginPage() {
         break
     }
   }
-
+  function handleSubmit(e) {
+    e.preventDefault()
+    loginUser(loginBody, setRedirect)
+  }
   return (
-    <form className='login'>
+    <form onSubmit={handleSubmit} className='login'>
+      <p>{redirect ? 'yes' : 'no'}</p>
       <h1>Login</h1>
       <input
         type='text'
-        placeholder='username'
-        value={login.username}
+        placeholder='email'
+        value={loginBody.email}
         onChange={handleChange}
-        id='username'
+        id='email'
       />
       <input
         type='password'
         placeholder='password'
-        value={login.password}
+        value={loginBody.password}
         onChange={handleChange}
         id='password'
       />
-      <button>login</button>
+      <button type='submit'>login</button>
     </form>
   )
 }

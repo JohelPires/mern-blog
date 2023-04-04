@@ -14,3 +14,19 @@ export function registrar(bodyRegistro) {
       }
     })
 }
+
+export function loginUser(bodyRegistro, setRedirect) {
+  axios
+    .post('http://localhost:5000/auth/login', bodyRegistro, {
+      withCredentials: true,
+    })
+    .then((response) => {
+      console.log('Dados enviados.', response.data)
+      alert('login')
+      setRedirect(true)
+    })
+    .catch((err) => {
+      console.log(err.response.data)
+      alert(err.response.data)
+    })
+}
